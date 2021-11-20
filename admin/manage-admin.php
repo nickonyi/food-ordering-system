@@ -6,7 +6,7 @@ include "partials/menu.php";
     <div class="wrapper">
    <h1>manage admin</h1>
     <br  />  <br  />
-    <a href="#" class="btn-primary">Add admin</a>
+    <a href="add-admin.php" class="btn-primary">Add admin</a>
     <br><br><br>
    <table class="tbl-full">
        <tr>

@@ -1,3 +1,4 @@
+<?php  include ("../config/dbh.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

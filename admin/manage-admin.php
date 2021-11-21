@@ -11,6 +11,10 @@ include "partials/menu.php";
         echo $_SESSION['add']; //displayin session message
         unset($_SESSION['add']);//removing session message
     }
+    if(isset($_SESSION['delete'])){
+        echo $_SESSION['delete'];
+        unset($_SESSION['delete']);
+    }
     
     ?>
 <br><br><br>
@@ -54,7 +58,7 @@ include "partials/menu.php";
                    <td><?php echo $username;?></td>
                    <td>
                        <a href="#" class="btn-secondary">Update admin</a>
-                       <a href="#" class="btn-danger">Delete admin</a>
+                       <a href="<?php echo SITEURL;?>admin/delete-admin.php?id= <?php echo $id;?>" class="btn-danger">Delete admin</a>
                    </td>
                </tr>
 

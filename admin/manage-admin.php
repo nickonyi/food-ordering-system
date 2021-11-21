@@ -6,6 +6,14 @@ include "partials/menu.php";
     <div class="wrapper">
    <h1>manage admin</h1>
     <br  />  <br  />
+    <?php
+    if(isset($_SESSION['add'])){
+        echo $_SESSION['add']; //displayin session message
+        unset($_SESSION['add']);//removing session message
+    }
+    
+    ?>
+<br><br><br>
     <a href="add-admin.php" class="btn-primary">Add admin</a>
     <br><br><br>
    <table class="tbl-full">
@@ -15,42 +23,49 @@ include "partials/menu.php";
            <th>username</th>
            <th>Actions</th>
        </tr>
-       <tr>
-           <td>1.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
-                <a href="#" class="btn-danger">Delete Admin</a>
-           </td>
-       </tr>
-       <tr>
-           <td>2.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td> 
-                 <a href="#" class="btn-secondary">Update Admin</a>
-                 <a href="#" class="btn-danger">Delete Admin</a>
-            </td>
-       </tr>
-       <tr>
-           <td>3.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
-                <a href="#" class="btn-danger">Delete Admin</a>
-           </td>
-       </tr>
-       <tr>
-           <td>4.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
-                <a href="#" class="btn-danger">Delete Admin</a>
-           </td>
-       </tr>
+
+       <?php
+       //query to get all admin
+       $sql = "SELECT * from tbl_admin";
+       //execute the query
+       $res = mysqli_query($conn,$sql);
+       //check the query whether it is executed or not
+       if($res){
+      //count the rows to check if we have data in the database or not
+      $count = mysqli_num_rows($res);//function to get all the rows in the database
+      //check the number of rows
+      if($count > 0){
+          //we have data in the database
+          $sno = 1;
+          while($rows = mysqli_fetch_assoc($res)){
+              //using while loop to fetch all the data from the database
+              //while loop will run as long as we have data in the database
+
+              //get the individual data
+              $id = $rows['id'];
+              $full_name = $rows['full_name'];
+              $username = $rows['username'];
+
+              //display the values in our table
+              ?>
+               <tr>
+                   <td><?php echo $sno++;?></td>
+                   <td><?php echo $full_name;?></td>
+                   <td><?php echo $username;?></td>
+                   <td>
+                       <a href="#" class="btn-secondary">Update admin</a>
+                       <a href="#" class="btn-danger">Delete admin</a>
+                   </td>
+               </tr>
+
+              <?php
+          }
+      } else {
+          //we do not have data in the database
+      }
+       }
+       ?>
+      
    </table>
     </div>
     </div>

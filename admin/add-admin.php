@@ -6,6 +6,12 @@ include ("partials/menu.php") ;
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Admin</h1>
+        <?php
+        if(isset($_SESSION['add'])){ //check whether the message is displayed or not
+            echo $_SESSION['add'];   //display session message
+            unset($_SESSION['add']);//remove session message
+        }
+        ?>
         <br><br>
         <form action="" method="POST">
           <table class="tbl-30">
@@ -61,9 +67,19 @@ include ("partials/footer.php")
      $res = mysqli_query($conn,$sql) or die(mysqli_error());
  //cheeck whether the (query is executed) data is saved and display the appropriate message
  if($res){
-     echo "data is inserted";
+     //data inserted
+    // echo "data is inserted";
+    //create a session variable to display message
+    $_SESSION['add'] ="admin added successfully";
+//redirect page to main admin
+header ("location:".SITEURL."admin/manage-admin.php");
  } else {
-     echo "failed to insert data";
+     //failed to insert data
+     //echo "failed to insert data";
+     //create a session variable to display message
+    $_SESSION['add'] ="Failed to add admin";
+    //redirect page to add admin
+    header ("location:".SITEURL."admin/add-admin.php");
  }
     } 
 

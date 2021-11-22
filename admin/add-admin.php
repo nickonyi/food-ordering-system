@@ -70,14 +70,14 @@ include ("partials/footer.php")
      //data inserted
     // echo "data is inserted";
     //create a session variable to display message
-    $_SESSION['add'] ="admin added successfully";
+    $_SESSION['add'] ="<div class='success'>admin added successfully.</div>";
 //redirect page to main admin
 header ("location:".SITEURL."admin/manage-admin.php");
  } else {
      //failed to insert data
      //echo "failed to insert data";
      //create a session variable to display message
-    $_SESSION['add'] ="Failed to add admin";
+    $_SESSION['add'] ="<div class='error'>Failed to add admin.</div>";
     //redirect page to add admin
     header ("location:".SITEURL."admin/add-admin.php");
  }

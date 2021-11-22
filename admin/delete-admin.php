@@ -12,13 +12,13 @@ if($res){
 //query executed successfully and amin deleted
 //echo "admin deleted";
 //create a session variable to display message
-$_SESSION['delete']  = "Admin successfully deleted";
+$_SESSION['delete']  = "<div class='success'>Admin successfully deleted.</div>";
 //redirect to manage-admin page
 header("Location:".SITEURL.'admin/manage-admin.php');
 } else {
 //failed to delete admin successfully
 //echo "admin not deleted";
-$_SESSION['delete'] = "Failed to delete admin";
+$_SESSION['delete'] = "<div class='error'>Failed to delete admin.</div>";
 //redirect to manage-admin page
 header("Location:".SITEURL.'admin/manage-admin.php');
 }

@@ -19,6 +19,10 @@ include "partials/menu.php";
         echo $_SESSION['update'];
         unset($_SESSION['update']);
     }
+    if(isset($_SESSION['user-not-found'])){
+        echo $_SESSION['user-not-found'];
+        unset($_SESSION['user-not-found']);
+    }
    
     
         ?>
@@ -62,6 +66,7 @@ include "partials/menu.php";
                    <td><?php echo $full_name;?></td>
                    <td><?php echo $username;?></td>
                    <td>
+                       <a href="<?php echo SITEURL;?>admin/update-password.php?id= <?php echo $id;?>" class="btn-primary">Change password</a>
                        <a href="<?php echo SITEURL;?>admin/update-admin.php?id= <?php echo $id;?>"  class="btn-secondary">Update admin</a>
                        <a href="<?php echo SITEURL;?>admin/delete-admin.php?id= <?php echo $id;?>" class="btn-danger">Delete admin</a>
                    </td>

@@ -55,7 +55,7 @@ include ("partials/footer.php")
      //get the data from the form
      $full_name = $_POST['full_name'];
      $username = $_POST['username'];
-     $password  = md5($_POST['password']); //password encrypted with md5
+     $password  =md5($_POST['password']); //password encrypted with md5
      //sql query to save the data to the database
      $sql = "INSERT into tbl_admin SET 
           full_name = '$full_name',

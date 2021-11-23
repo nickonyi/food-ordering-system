@@ -23,6 +23,14 @@ include "partials/menu.php";
         echo $_SESSION['user-not-found'];
         unset($_SESSION['user-not-found']);
     }
+    if(isset($_SESSION['pwd-not-match'])){
+        echo $_SESSION['pwd-not-match'];
+        unset($_SESSION['pwd-not-match']);
+    }
+        if(isset($_SESSION['password-update'])){
+            echo $_SESSION['password-update'];
+            unset($_SESSION['password-update']);
+    }
    
     
         ?>

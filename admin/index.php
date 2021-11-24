@@ -11,7 +11,7 @@ include "partials/menu.php";
             echo $_SESSION['login'];
             unset($_SESSION["login"]);
         }
-        
+        ?>
    <div class="col-4 text-center">
        <h1>5</h1>
        <br>

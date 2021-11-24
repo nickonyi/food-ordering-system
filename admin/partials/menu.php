@@ -1,11 +1,7 @@
 <?php  
 include ("../config/dbh.php");
-
-
+include ("login-check.php");
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

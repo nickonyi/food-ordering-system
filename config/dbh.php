@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-error_reporting();
+ini_set('display_errors',1);
 define('SITEURL','http://localhost/food-ordering-system/');
 $dbservername = "localhost";
 $dbusername ="root";

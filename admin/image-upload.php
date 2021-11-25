@@ -29,14 +29,7 @@ if(isset($_FILES['image']['name'])){
     $destination_path = "../images/category/".$image_name;
     $upload = move_uploaded_file($source_path,$destination_path);
 
-    if($upload){
-        echo "true";
-    } else {
-        echo "false";
-    }
-} else {
-    //don't upload the image and leave the value blank
-    $image_name = "";
+echo $destination_path;
 }
 ?>
     </div>

@@ -34,7 +34,10 @@ if(isset($_GET['id']) && isset($_GET['image_name'])){
         //redirect to the manage category page
         header("location:".SITEURL."admin/manage-category.php");
     } else {
-      
+      //redirect to the manage category page with message
+      $_SESSION['delete'] = "<div class='error'>Failed to delete the photo!</div>";
+      //redirect to the manage category page
+      header("location:".SITEURL."admin/manage-category.php"); 
     }
    
 } else {

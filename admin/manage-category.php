@@ -20,6 +20,14 @@ ini_set('display_errors',1);
             echo $_SESSION['delete'];
             unset($_SESSION['delete']);
         }
+        if(isset($_SESSION['category-not-found'])){
+            echo $_SESSION['category-not-found'];
+            unset($_SESSION['category-not-found']);
+        }
+        if(isset($_SESSION['update'])){
+            echo $_SESSION['update'];
+            unset($_SESSION['update']);
+        }
         ?>
         <br><br>
     <a href="add-category.php" class="btn-primary">Add category</a>
@@ -74,7 +82,7 @@ ini_set('display_errors',1);
                    <td><?php echo $featured;?></td>
                    <td><?php echo $active;?></td>
                    <td>
-                       <a href="<?php echo SITEURL;?>admin/update-admin.php?id= <?php echo $id;?>&image_name= <?php echo $image_name;?>"  class="btn-secondary">Update admin</a>
+                       <a href="<?php echo SITEURL;?>admin/update-category.php?id= <?php echo $id;?>"  class="btn-secondary">Update admin</a>
                        <a href="<?php echo SITEURL;?>admin/delete-category.php?id= <?php echo $id;?>&image_name= <?php echo $image_name;?>" class="btn-danger">Delete admin</a>
                    </td>
                </tr>

@@ -104,9 +104,47 @@ ini_set('display_errors',1);
             $active = $_POST['active'];
 
             //update the new image if selected
+           //check if the image is selected or not
+         if(isset($_FILES['image']['name'])){
+             //get the image details
+            
+                $image_name = $_FILES['image']['name'];
+                //upload the new image
+                //auto  rename our image
+   //get the extension of our image (jpg,gif,png)
+       $ext = end(explode('.',$image_name));
+       //rename the image
+       $image_name = "food_category_".rand(000,999).'.'.$ext; //eg food_category_937.jpg
+   
+       $source_path = $_FILES['image']['tmp_name'];
+   
+       $destination_path = "../images/category/".$image_name;
+   
+       $upload = move_uploaded_file($source_path,$destination_path);
+   
+       if(!$upload){
+           //display the error message
+           $_SESSION['upload'] = "<div class='error'>The image was not uploaded.</div>";
+           //redirect to the add category page
+           header("location:".SITEURL."admin/add-category.php");
+           die();
+       }
+                //remove the current image
+               
+                   $remove_path = "../images/category/".$current_image;
+                   $remove = unlink($remove_path);
+               
+               
+            
+            
+
+         } else {
+             $image_name = $current_image;
+         }
             //update the database
             $sql2 ="UPDATE tbl_category SET
             title = '$title',
+            image_name = '$image_name',
             featured = '$featured',
             active = '$active'
             WHERE id = $id
@@ -120,10 +158,12 @@ ini_set('display_errors',1);
                  //redirect to manage category page
                  header("location:".SITEURL."admin/manage-category.php");
             }else {
-                    //display success message  
+                    //failed to update category
                     $_SESSION['update'] = "<div class='error'>Failed to update category!</div>";
                     //redirect to manage category page
                     header("location:".SITEURL."admin/manage-category.php");
+                    //stop the process
+                    die();
             }
             //direct tothe manage category page
         }

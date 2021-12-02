@@ -28,6 +28,14 @@ ini_set('display_errors',1);
             echo $_SESSION['update'];
             unset($_SESSION['update']);
         }
+        if(isset($_SESSION['upload'])){
+            echo $_SESSION['upload'];
+            unset($_SESSION['upload']);
+        }
+        if(isset($_SESSION['remove-failed'])){
+            echo $_SESSION['remove-failed'];
+            unset($_SESSION['remove-failed']);
+        }
         ?>
         <br><br>
     <a href="add-category.php" class="btn-primary">Add category</a>

@@ -89,6 +89,7 @@ if(isset($_FILES['image']['name'])){
         $_SESSION['upload'] = "<div class='error'>The image was not uploaded.</div>";
         //redirect to the add category page
         header("location:".SITEURL."admin/add-category.php");
+        die();
     }
 } else {
     //don't upload the image and leave the value blank

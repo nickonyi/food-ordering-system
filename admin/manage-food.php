@@ -3,53 +3,80 @@ include ("partials/menu.php");
 ?>
 <div class="main-content">
     <div class="wrapper">
-        <h1>manage food</h1>
+        <h1>Manage Food</h1>
+        <?php 
+        if(isset($_SESSION['add'])){
+            echo $_SESSION['add'];
+            unset($_SESSION['add']);
+        }
+        
+        ?>
         <br  />  <br  />
     <a href="<?php echo SITEURL;?>admin/add-food.php" class="btn-primary">Add food</a>
     <br><br><br>
    <table class="tbl-full">
        <tr>
            <th>S.No</th>
-           <th>full_name</th>
-           <th>username</th>
+           <th>Title</th>
+           <th>Price</th>
+           <th>Image</th>
+           <th>Featured</th>
+           <th>Active</th>
            <th>Actions</th>
        </tr>
-       <tr>
-           <td>1.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
+       <?php
+       //create an sql query to acess all the data from the database
+       $sql = "SELECT *FROM tbl_food";
+       //execute the query
+       $res = mysqli_query($conn,$sql);
+       //count the number of rows to see if the data is available
+       $count = mysqli_num_rows($res);
+       //if the count is greater than 0 we have data in the database
+       if($count > 0){
+         //we have  data in the database
+         $sn = 1;
+         while($row = mysqli_fetch_assoc($res)){
+             $title = $row['title'];
+             $price = $row['price'];
+             $image_name = $row['image_name'];
+             $featured = $row['featured'];
+             $active =  $row['active'];
+             ?>
+              <tr>
+           <td><?php echo $sn++;?></td>
+           <td><?php echo $title;?></td>
+           <td>$<?php echo $price;?></td>
            <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
-                <a href="#" class="btn-danger">Delete Admin</a>
+               <?php
+               if($image_name !=""){
+                   ?>
+                   <img src="<?php echo SITEURL;?>images/food/<?php echo $image_name;?>" alt="" width="100px">
+                   <?php
+               } else {
+                   echo "<div class='error'>Image is not uploaded!</div>";
+               }
+               ?>
+        
+           </td>
+           <td><?php echo $featured;?></td>
+           <td><?php echo $active;?></td>
+           <td>
+                <a href="#" class="btn-secondary">Update Food</a>
+                <a href="#" class="btn-danger">Delete Food</a>
            </td>
        </tr>
-       <tr>
-           <td>2.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td> 
-                 <a href="#" class="btn-secondary">Update Admin</a>
-                 <a href="#" class="btn-danger">Delete Admin</a>
-            </td>
-       </tr>
-       <tr>
-           <td>3.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
-                <a href="#" class="btn-danger">Delete Admin</a>
-           </td>
-       </tr>
-       <tr>
-           <td>4.</td>
-           <td>nickonyansh</td>
-           <td>nickonyipapaj</td>
-           <td>
-                <a href="#" class="btn-secondary">Update Admin</a>
-                <a href="#" class="btn-danger">Delete Admin</a>
-           </td>
-       </tr>
+             <?php
+         }
+       }else {
+           //we do no have data in the database
+           echo "<tr> <td colspan='7' class='error'> Food not added yet!</td> <tr>";
+       }
+       
+       ?>
+
+      
+       
+           
    </table>
     </div>
 </div>

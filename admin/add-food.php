@@ -2,6 +2,13 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>Add Food</h1>
+        <?php
+        if(isset($_SESSION['upload'])){
+            echo $_SESSION['upload'];
+            unset($_SESSION['upload']);
+        }
+        
+        ?>
         <br><br>
         <form action="" method="post" enctype="multipart/form-data">
           <table class="tbl-30">
@@ -96,10 +103,78 @@
             $description = $_POST['description'];
             $price = $_POST['price'];
             $category = $_POST['category'];
-            $featured = $_POST['featured'];
-            $active = $_POST['active'];
+            //check  whether the value for featured and active have been clicked or not
+            if(isset($_POST['featured'])){
+                $featured = $_POST['featured'];
+            } else {
+                $featured = "No";
+            }
+           
+            if(isset($_POST['active'])){
+                $active = $_POST['active'];
+            } else {
+                $active = "No";
+            }
+           
+            
             //insert the image if selected
+            //check whether the select image has been clicked or not and upload the image only if the image is selected
+            if(isset($_FILES['image']['name'])){
+                //get the details of the selected image
+                $image_name = $_FILES['image']['name'];
+                //check whether the image is selected or not and upload if the image is selected
+                if($image_name !=""){
+                    //image is selected
+                    //rename the image
+                    //get the extension of the selected image eg.(jpg,gif,png,e.t.c)
+                    $tmp = explode('.', $image_name);
+                    $ext = end($tmp);
+                    $image_name ="food-name-".rand(0000,9999).".".$ext;
+                    //upload the image
+                    //get the source path where the image currently resides
+                    $source_path = $_FILES['image']['tmp_name'];
+                    //the destination path of the image 
+                    $destination_path = "../images/food/".$image_name;
+                    //upload the image
+                    $upload = move_uploaded_file($source_path, $destination_path);
+                    //check whether the image is uploaded or not
+                    if(!$upload){
+                        //display the error message
+                        $_SESSION['upload'] = "<div class='error'>Failed to upload the image</div>";
+                        //redirect to the add food page
+                        header("location:".SITEURL."admin/add-food.php");
+                        //stop the process
+                        die();
+                    } 
+                }
+            } else {
+                $image_name = "";
+            }
             //insert into database
+            //create an sql query to insert data into database
+            $sql2 = "INSERT INTO tbl_food SET
+            title = '$title',
+            description = '$description',
+            price = $price,
+            image_name = '$image_name',
+            category_id = '$category',
+            featured = '$featured',
+            active = '$active'
+            ";
+            //execute the query
+            $res2 = mysqli_query($conn,$sql2);
+            //check whether the query is executed or not
+            if($res2){
+                //display success message
+                $_SESSION['add'] = "<div class='success'>The data was successful added!</div>";
+                //redirect to the manage food page
+                header("location:".SITEURL."admin/manage-food.php");
+            } else {
+                //display error message
+                $_SESSION['add'] = "<div class='error'>Failed to add data!</div>";
+                //redirect to the manage food page
+                header("location:".SITEURL."admin/manage-food.php");
+            }
             //redirect to manage food page 
         }
         

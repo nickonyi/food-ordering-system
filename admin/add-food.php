@@ -49,7 +49,7 @@
                   //count the rows to see if the categories are available or not
                   $count = mysqli_num_rows($result);
                   //if the count is greater than  1 then we have categories else we do not have categories
-                  if($count > 1){
+                  if($count > 0){
                     //we have categories
                     while($row = mysqli_fetch_assoc($result)){
                        //get the details of categories

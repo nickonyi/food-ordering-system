@@ -5,7 +5,7 @@ ini_set('display_errors',1);
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>manage category</h1>
+        <h1>Manage Category</h1>
         <br><br>
         <?php
         if(isset($_SESSION['add'])){
@@ -90,8 +90,8 @@ ini_set('display_errors',1);
                    <td><?php echo $featured;?></td>
                    <td><?php echo $active;?></td>
                    <td>
-                       <a href="<?php echo SITEURL;?>admin/update-category.php?id= <?php echo $id;?>"  class="btn-secondary">Update admin</a>
-                       <a href="<?php echo SITEURL;?>admin/delete-category.php?id= <?php echo $id;?>&image_name= <?php echo $image_name;?>" class="btn-danger">Delete admin</a>
+                       <a href="<?php echo SITEURL;?>admin/update-category.php?id= <?php echo $id;?>"  class="btn-secondary">Update Category</a>
+                       <a href="<?php echo SITEURL;?>admin/delete-category.php?id= <?php echo $id;?>&image_name= <?php echo $image_name;?>" class="btn-danger">Delete Category</a>
                    </td>
                </tr>
                <?php

@@ -1,5 +1,5 @@
 /* 
-    Author: Vijay Thapa;
+    Author: Nicklede Onyango;
     Theme: Restaurant Food Order;
     version: 1.0;
 */
@@ -100,6 +100,14 @@ fieldset {
     margin: 5%;
     padding: 3%;
     border-radius: 5px;
+}
+
+.success {
+    color: #2ed573;
+}
+
+.error {
+    color: #ff4757;
 }
 
 

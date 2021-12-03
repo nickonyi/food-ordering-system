@@ -1,4 +1,8 @@
-<?php include("partials/menu.php");?>
+<?php 
+
+include("partials/menu.php");
+ob_start();
+?>
 
 <div class="main-content">
     <div class="wrapper">
@@ -36,7 +40,7 @@
             }
         } else {
             //redirect to the manage category page
-            header("Location:".SITEURL."admin/manage-food.php");
+            header("location:".SITEURL."admin/manage-food.php");
         }
 
 ?>
@@ -132,7 +136,7 @@
               </tr>
               <tr>
                   <td colspan="2">
-                      <input type="hidden" name="id" value="<?php echo $id;?>">
+                      <input type="hidden" name="id" value="<?php echo $current_id;?>">
                       <input type="hidden" name="current_image" value="<?php echo $current_image;?>">
                    <input type="submit" name="submit" value="Add Food" class="btn-secondary">
                   </td>
@@ -236,4 +240,7 @@
         ?>
     </div>
 </div>
-<?php include("partials/footer.php");?>
+<?php 
+include("partials/footer.php");
+ob_end_flush();
+?>

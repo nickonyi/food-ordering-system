@@ -1,9 +1,15 @@
 <?php include("partials-front/menu.php");?>
+<?php 
+    if(isset($_SESSION['authorisation'])){
+        echo $_SESSION['authorisation'];
+        unset($_SESSION['authorisation']);
+    }
+    ?>
 <!-- fOOD sEARCH Section Starts Here -->
     <section class="food-search text-center">
         <div class="container">
 
-            <form action="food-search.html" method="POST">
+            <form action="<?php echo SITEURL;?>food-search.php" method="POST">
                 <input type="search" name="search" placeholder="Search for Food.." required>
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
             </form>
@@ -34,7 +40,7 @@
                     ?>
                
                
-               <a href="category-foods.html">
+               <a href="<?php echo SITEURL;?>category-foods.php?category_id=<?php echo $id;?>">
                         <div class="box-3 float-container">
                             <img src="<?php echo SITEURL;?>images/category/<?php echo $image_name;?>" alt="Pizza" class="img-responsive img-curve" width="400px" height="400px">
 
@@ -71,28 +77,28 @@
 
                if($count2 > 0){
                   //foods are available
-                  while($row = mysqli_fetch_assoc($res2)){
+                  while($row2 = mysqli_fetch_assoc($res2)){
                       //get the individual data such as id,title and image name
-                      $id = $row['id'];
-                      $title = $row['title'];
-                      $description = $row['description'];
-                      $price = $row['price'];
-                      $image_name = $row['image_name'];
+                      $id = $row2['id'];
+                      $title = $row2['title'];
+                      $description = $row2['description'];
+                      $price = $row2['price'];
+                      $image_name = $row2['image_name'];
                       ?>
                         <div class="food-menu-box">
                 <div class="food-menu-img">
-                    <img src="<?php echo SITEURL;?>images/food/<?php echo $image_name;?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
+                    <img src="<?php echo SITEURL;?>images/food/<?php echo $image_name;?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve" height="125px">
                 </div>
 
                 <div class="food-menu-desc">
-                    <h4>Food Title</h4>
-                    <p class="food-price"><?php echo $price;?></p>
+                    <h4><?php echo $title;?></h4>
+                    <p class="food-price">Ksh. <?php echo $price;?></p>
                     <p class="food-detail">
                        <?php echo $description;?>
                     </p>
                     <br>
 
-                    <a href="order.html" class="btn btn-primary">Order Now</a>
+                    <a href="<?php echo SITEURL;?>order.php?food_id=<?php echo $id;?>" class="btn btn-primary">Order Now</a>
                 </div>
             </div>
                       <?php
@@ -110,7 +116,7 @@
         </div>
 
         <p class="text-center">
-            <a href="#">See All Foods</a>
+            <a href="<?php echo SITEURL?>foods.php">See All Foods</a>
         </p>
     </section>
     <!-- fOOD Menu Section Ends Here -->

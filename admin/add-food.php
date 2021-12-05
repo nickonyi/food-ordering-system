@@ -161,6 +161,7 @@
             featured = '$featured',
             active = '$active'
             ";
+           
             //execute the query
             $res2 = mysqli_query($conn,$sql2);
             //check whether the query is executed or not

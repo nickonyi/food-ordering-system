@@ -104,10 +104,12 @@ fieldset {
 
 .success {
     color: #2ed573;
+    padding: 2%;
 }
 
 .error {
     color: #ff4757;
+    padding: 2%;
 }
 
 

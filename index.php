@@ -3,6 +3,11 @@
     if(isset($_SESSION['authorisation'])){
         echo $_SESSION['authorisation'];
         unset($_SESSION['authorisation']);
+    } 
+
+    if(isset($_SESSION['ordered'])){
+        echo $_SESSION['ordered'];
+        unset($_SESSION['ordered']);
     }
     ?>
 <!-- fOOD sEARCH Section Starts Here -->
